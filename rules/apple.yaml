@@ -1,0 +1,23 @@
+payload:
+- DOMAIN,testflight.apple.com
+- DOMAIN,books.itunes.apple.com
+- DOMAIN,hls.itunes.apple.com
+- DOMAIN,apps.apple.com
+- DOMAIN,itunes.apple.com
+- DOMAIN,api-glb-sea.smoot.apple.com
+- DOMAIN,lookup-api.apple.com
+- DOMAIN-SUFFIX,apple.co
+- DOMAIN-SUFFIX,apple.com
+- DOMAIN-SUFFIX,apple-cloudkit.com
+- DOMAIN-SUFFIX,cdn-apple.com
+- DOMAIN-SUFFIX,icloud.com
+- DOMAIN-SUFFIX,icloud-content.com
+- DOMAIN,www-cdn.icloud.com.akadns.net
+- DOMAIN-SUFFIX,apple.co
+- DOMAIN-SUFFIX,apple.com
+- DOMAIN-SUFFIX,apple-cloudkit.com
+- DOMAIN-SUFFIX,cdn-apple.com
+- DOMAIN-SUFFIX,icloud.com
+- DOMAIN-SUFFIX,icloud-content.com
+- DOMAIN,www-cdn.icloud.com.akadns.net
+- DOMAIN-SUFFIX,hicloud.com
