@@ -13,32 +13,25 @@ proxy-providers:
       interval: 300
 proxy-groups:
 - name: ChatGPT
-  proxies:
-  - US-Silk
   type: select
+  filter: (?i)US|Silk|VPS
   _index: 0
   use:
   - local
 - name: Fast
-  proxies:
-  - JP-Lvyun
-  - US-VPS
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 600
   use:
   - local
 - name: JP
-  proxies:
-  - JP-Lvyun
   type: select
+  filter: (?i)JP|Japan|Lvyun
   use:
   - local
 - name: US
-  proxies:
-  - US-VPS
-  - US-Silk
   type: select
+  filter: (?i)US|United States|Silk|VPS
   _index: 3
   use:
   - local
@@ -69,8 +62,6 @@ proxy-groups:
 - name: 🎮Steam
   type: select
   proxies:
-  - US-VPS
-  - JP-Lvyun
   - Fast
   - 🚀直接连接
   use:
@@ -85,17 +76,17 @@ proxy-groups:
   type: select
   proxies:
   - Fast
-  - US-VPS
-  - JP-Lvyun
+  - US
+  - JP
   use:
   - local
 - name: 🍎苹果服务
   type: select
   proxies:
   - 🚀直接连接
-  - US-Silk
-  - US-VPS
-  - JP-Lvyun
+  - US
+  - Fast
+  - JP
   _index: 15
   use:
   - local
@@ -130,6 +121,56 @@ proxy-groups:
   proxies:
   - DIRECT
   _index: 11
+  use:
+  - local
+- name: AI
+  type: select
+  proxies:
+  - US
+  - Fast
+  - JP
+  use:
+  - local
+- name: Proxy
+  type: select
+  proxies:
+  - US
+  - Fast
+  - JP
+  use:
+  - local
+- name: Microsoft
+  type: select
+  proxies:
+  - 🚀直接连接
+  - US
+  - Fast
+  - JP
+  use:
+  - local
+- name: Telegram
+  type: select
+  proxies:
+  - US
+  - Fast
+  - JP
+  use:
+  - local
+- name: Apple
+  type: select
+  proxies:
+  - 🚀直接连接
+  - US
+  - Fast
+  - JP
+  use:
+  - local
+- name: 流媒体
+  type: select
+  proxies:
+  - US
+  - Fast
+  - JP
   use:
   - local
 rule-providers:
