@@ -1,0 +1,120 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 0.0.0.0:9090
+secret: ''
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+    TLS:
+      ports:
+      - 443
+      - 8443
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+  - any:53
+  auto-route: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  fallback:
+  - https://1.1.1.1/dns-query
+  - https://8.8.8.8/dns-query
+  fake-ip-filter:
+  - '*.lan'
+  - '*.localdomain'
+  - '*.example'
+proxy-providers:
+  local:
+    type: file
+    path: ./proxy_provider/local.yaml
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+proxy-groups:
+- name: 节点选择
+  type: select
+  use:
+  - local
+- name: 自动选择
+  type: url-test
+  use:
+  - local
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+- name: 全球代理
+  type: select
+  proxies:
+  - 自动选择
+  - 节点选择
+  - DIRECT
+- name: OpenAI
+  type: select
+  proxies:
+  - 全球代理
+  - 节点选择
+- name: YouTube
+  type: select
+  proxies:
+  - 全球代理
+  - 节点选择
+- name: Telegram
+  type: select
+  proxies:
+  - 全球代理
+  - 节点选择
+- name: 国外媒体
+  type: select
+  proxies:
+  - 全球代理
+  - 节点选择
+- name: 微软服务
+  type: select
+  proxies:
+  - DIRECT
+  - 全球代理
+- name: 苹果服务
+  type: select
+  proxies:
+  - DIRECT
+  - 全球代理
+- name: 国内直连
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+- name: 漏网之鱼
+  type: select
+  proxies:
+  - 全球代理
+  - DIRECT
+rules:
+- DOMAIN-SUFFIX,openai.com,OpenAI
+- DOMAIN-SUFFIX,chatgpt.com,OpenAI
+- DOMAIN-SUFFIX,telegram.org,Telegram
+- DOMAIN-SUFFIX,youtube.com,YouTube
+- DOMAIN-SUFFIX,googlevideo.com,YouTube
+- DOMAIN-SUFFIX,netflix.com,国外媒体
+- DOMAIN-SUFFIX,disneyplus.com,国外媒体
+- DOMAIN-SUFFIX,microsoft.com,微软服务
+- DOMAIN-SUFFIX,apple.com,苹果服务
+- GEOIP,CN,国内直连
+- MATCH,漏网之鱼
