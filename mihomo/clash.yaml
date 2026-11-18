@@ -120,11 +120,11 @@ proxy-groups:
 - name: AI
   type: select
   proxies:
-  - US
-  - Fast
-  - JP
+  - US-Silk
+  - JP-Lvyun
   use:
   - local
+  _index: 0
 - name: Proxy
   type: select
   proxies:
